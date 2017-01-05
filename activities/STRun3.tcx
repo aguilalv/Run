@@ -50,57 +50,52 @@
             <Cadence>57</Cadence>
             <SensorState>Present</SensorState>
           </Trackpoint>
-        </Track>
-      </Lap>
-    </Activity>
-    <Activity Sport="Running">
-      <Id>2016-12-19T12:25:09Z</Id>
-      <Lap StartTime="2016-12-19T12:25:09Z">
-        <TotalTimeSeconds>1860.72</TotalTimeSeconds>
-        <DistanceMeters>5381.12</DistanceMeters>
-        <MaximumSpeed>3.63</MaximumSpeed>
-        <Calories>402</Calories>
-        <AverageHeartRateBpm>
-          <Value>148</Value>
-        </AverageHeartRateBpm>
-        <MaximumHeartRateBpm>
-          <Value>161</Value>
-        </MaximumHeartRateBpm>
-        <Cadence>75</Cadence>
-        <Intensity>Active</Intensity>
-        <Track>
           <Trackpoint>
-            <Time>2016-12-19T12:25:09Z</Time>
+            <Time>2016-12-19T12:25:13Z</Time>
             <Position>
-              <LatitudeDegrees>39.449821472168</LatitudeDegrees>
-              <LongitudeDegrees>-0.39246642589569</LongitudeDegrees>
+              <LatitudeDegrees>39.449768066406</LatitudeDegrees>
+              <LongitudeDegrees>-0.3925042450428</LongitudeDegrees>
             </Position>
-            <AltitudeMeters>16.10000038147</AltitudeMeters>
-            <DistanceMeters>0</DistanceMeters>
+            <AltitudeMeters>16</AltitudeMeters>
+            <DistanceMeters>6.9099998474121</DistanceMeters>
             <HeartRateBpm>
-              <Value>85</Value>
+              <Value>89</Value>
             </HeartRateBpm>
-            <Cadence>58</Cadence>
+            <Cadence>78</Cadence>
+            <SensorState>Present</SensorState>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2016-12-19T12:25:14Z</Time>
+            <Position>
+              <LatitudeDegrees>39.44974899292</LatitudeDegrees>
+              <LongitudeDegrees>-0.39252200722694</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>16</AltitudeMeters>
+            <DistanceMeters>9.6199998855591</DistanceMeters>
+            <HeartRateBpm>
+              <Value>90</Value>
+            </HeartRateBpm>
+            <Cadence>79</Cadence>
+            <SensorState>Present</SensorState>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2016-12-19T12:25:17Z</Time>
+            <Position>
+              <LatitudeDegrees>39.449695587158</LatitudeDegrees>
+              <LongitudeDegrees>-0.39257791638374</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>15.89999961853</AltitudeMeters>
+            <DistanceMeters>17.110000610352</DistanceMeters>
+            <HeartRateBpm>
+              <Value>93</Value>
+            </HeartRateBpm>
+            <Cadence>77</Cadence>
             <SensorState>Present</SensorState>
             <Extensions>
               <TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
-                <Watts>0</Watts>
+                <Watts>17</Watts>
               </TPX>
             </Extensions>
-          </Trackpoint>
-          <Trackpoint>
-            <Time>2016-12-19T12:25:10Z</Time>
-            <Position>
-              <LatitudeDegrees>39.449813842773</LatitudeDegrees>
-              <LongitudeDegrees>-0.39246997237206</LongitudeDegrees>
-            </Position>
-            <AltitudeMeters>16.10000038147</AltitudeMeters>
-            <DistanceMeters>0.93000000715256</DistanceMeters>
-            <HeartRateBpm>
-              <Value>85</Value>
-            </HeartRateBpm>
-            <Cadence>57</Cadence>
-            <SensorState>Present</SensorState>
           </Trackpoint>
         </Track>
       </Lap>

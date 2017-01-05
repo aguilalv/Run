@@ -15,8 +15,6 @@ import argparse
 import logging
 import xml.etree.ElementTree as ET
 
-
-
 #################### THIS HAS TO GO TO A COMMON PACKAGE ##################
 
 import os

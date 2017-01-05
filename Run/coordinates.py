@@ -9,11 +9,11 @@ class coord:
     def __sub__(self, other):
         # ## Returns linear distance (May be change to return geographic distance? May be not needed if points are close?)
         ret = math.sqrt(((other.lat - self.lat)**2) + ((other.long - self.long)**2))
-        return -ret
+        return abs(ret)
         
     
     def __str__(self):
-        ret = '({},{})'.format(self.lat,self.long)
+        ret = '({: .5f},{: .5f})'.format(self.lat,self.long)
         return ret
         
 
