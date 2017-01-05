@@ -1,13 +1,35 @@
 import math
 
 class coord:
-    
+
+    """Geographic coordinates of a point.
+
+    """
+
+
     def __init__(self,lat,long):
+        """Construct a coordinates instance.
+
+        Args:
+            lat (float): Lattitude
+            long (float): Longitude
+        """
         self.lat = lat
         self.long = long
         
     def __sub__(self, other):
-        # ## Returns linear distance (May be change to return geographic distance? May be not needed if points are close?)
+        """Return linear distance between self and another point.
+
+        (May be change to return geographic distance? May be not needed if points are close?)
+
+        Args:
+            other (:obj: 'coord'): Point to which calculate distance
+
+        Returns:
+            Absolute distance between self and other point.
+
+
+        """
         ret = math.sqrt(((other.lat - self.lat)**2) + ((other.long - self.long)**2))
         return abs(ret)
         

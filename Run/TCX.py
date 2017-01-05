@@ -5,45 +5,19 @@
 # ### HARDCODED - Hardcoded value in case it needs to be revisited in the future
 
 # #### Log of next steps:
-#      - Change the logging formatter to produce logs in JSON format
-#      - Prepare a few cases of automated testing (paused exercise in the tests, several laps, missing data ...)
-#      - Process all tracks in each lap (several tracks mean the exercise was paused)
-#      - Some TCX files have laps with no track - not sure if it's valid or not
-#      - Store all constants used across several places in a constants module (e.g. NA_VALUE)
+#       - TODO Eliminate main and test in a different file
+#       - TODO Change the logging formatter to produce logs in JSON format
+#       - TODO Prepare a few cases of automated testing (paused exercise in the tests, several laps, missing data ...)
+#       - TODO Process all tracks in each lap (several tracks mean the exercise was paused)
+#       - TODO Some TCX files have laps with no track - not sure if it's valid or not
+#       - TODO Store all constants used across several places in a constants module (e.g. NA_VALUE)
 
 import argparse
 import logging
 import xml.etree.ElementTree as ET
 
-#################### THIS HAS TO GO TO A COMMON PACKAGE ##################
-
-import os
-import json
-import logging.config
-
-def setup_logging(
-    default_path='logging.json',
-    default_level=logging.INFO,
-    env_key='LOG_CFG'
-):
-    """Setup logging configuration
-
-    """
-    path = default_path
-    value = os.getenv(env_key, None)
-    if value:
-        path = value
-    if os.path.exists(path):
-        with open(path, 'rt') as f:
-            config = json.load(f)
-        logging.config.dictConfig(config)
-    else:
-        logging.basicConfig(level=default_level)
-
-#################### THIS HAS TO GO TO A COMMON PACKAGE ##################
-
 def main():
-    setup_logging()
+#    setup_logging()
 
     FILE = args.tcx_file1
 
@@ -59,6 +33,11 @@ def main():
 
 
 def parse(filename):
+    """Parse .tcx file. Return list of samples in the activity.
+
+    :param filename: Name of the file to process
+    :return: List of tuples with first tuple being the headers and remaining being sample points.
+    """
     # Get logger for this module and log "entering" event
     logger = logging.getLogger(__name__)
     logger.info("Entering TCX parse to process %s", filename)
@@ -170,9 +149,6 @@ def parse(filename):
     logger.info("Finished TCX parse to process %s", filename)
 
     return  smpl_lst
-
-
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
