@@ -1,6 +1,8 @@
 # Run
 Analysis of running activities
 
+This is a test for a conflict
+
 ## Log of to-dos
 
 0. Fill in docstrings for current base of code
@@ -10,3 +12,4 @@ Analysis of running activities
 2. Create databases and populate with all my historic runs
 3. Refine NW algorithm to identify "exactly the same" runs
 4. Ceate automated testing cases for NW algorithm and TCXparsing
+
