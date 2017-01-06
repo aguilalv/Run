@@ -1,6 +1,6 @@
 # #### Log of next steps:
 #       - TODO Split the alignment algorithm from main()
-#       - TODO Logging
+#       - TODO Add Logging for this module
 #       - TODO Eliminate main() and test in a separate module
 
 
