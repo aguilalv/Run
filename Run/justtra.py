@@ -1,9 +1,9 @@
 # TODO - Check if it is easy and worth it to use readline to have a command history
 
-import os
+import argparse
 import json
 import logging.config
-import argparse
+import os
 
 import TCX
 
@@ -23,7 +23,6 @@ def main():
         entered_words = entered.split()
         command = entered_words[0]
         args = entered_words[1:]
-
 
         if command not in COMMANDS_HELP:
             print ("Command not recognised. For a list of recognised commands enter 'help'")
