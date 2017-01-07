@@ -17,15 +17,11 @@ import logging
 import xml.etree.ElementTree as ET
 
 def main():
-#    setup_logging()
-
     FILE = args.tcx_file1
 
-    tpl_headers = ("DateTime", "Lap", "Latitude", "Longitude", "Altitude", "Dist", "HR", "Cadence,Power")
     smpl_lst = parse(FILE)
 
     # Print a list of samples as CSV
-    print(tpl_headers)
     for smpl in smpl_lst:
         for item in smpl:
             print(str(item)+", ",end="")
@@ -66,13 +62,13 @@ def parse(filename):
         logger.error("""ERROR IN TCX FILE: More than 1 "Activities" node in the file""")
         raise ValueError("""ERROR IN TCX FILE: More than 1 "Activities" node in the file""")
     act_lst = acts_nds[0].findall("df:Activity",
-                                  ns)  ### HARDCODED process first "Activities" (assumes never more than 1 per file)
+                                  ns)  ### HARDCODED: process first "Activities" (Would have been raised exception if more than 1)
     if len(act_lst) != 1:
         logger.error("""ERROR IN TCX FILE: More than 1 "Activity" node in the file""")
         raise ValueError("""ERROR IN TCX FILE: More than 1 "Activity" node in the file""")
 
     # Process the first activity
-    activity = act_lst[0]  ### HARDCODED process first activity (assumes never more than 1 per file)
+    activity = act_lst[0]  ### HARDCODED process first activity (Would have been raised exception if more than 1)
     sport = activity.attrib["Sport"]  # Get the sport from the "Sport" attribute in the "Activity" node
     datetime = activity.find("df:Id",
                              ns).text  # Get the date and time from the text in the Id element inside the "Activity" node
@@ -90,6 +86,7 @@ def parse(filename):
         pnts_lst = trck_lst[trck_nmbr].findall("df:Trackpoint", ns)
         logger.debug("Startint to process points: lap_nmbr: %s - trck_nmbr: %s of %s - points:%s", lap_nmbr, trck_nmbr,
                      len(trck_lst) - 1, len(pnts_lst))
+        point_number = 0
         for point in pnts_lst:
             # Timestamp (If not available raise exception with invalid file)
             try:
@@ -141,9 +138,16 @@ def parse(filename):
             else:
                 pnt_pow = NA_VALUE
 
-                # Create a tuple with sample information (in text form) and store in a list
-            smpl = (pnt_timestamp, lap_nmbr + 1, pnt_lat, pnt_long, pnt_altitude, pnt_dist, pnt_hr, pnt_cad, pnt_pow)
+            # If it is the first point of the first lap, store headers tuple
+            if len(smpl_lst) == 0:
+                tpl_headers = ("DateTime", "Lap", "Latitude", "Longitude", "Altitude", "Dist", "HR", "Cadence","Power")
+                smpl_lst.append(tpl_headers)
+
+            # Create a tuple with sample information (in text form) and store in a list
+            smpl = (pnt_timestamp, str(lap_nmbr + 1), pnt_lat, pnt_long, pnt_altitude, pnt_dist, pnt_hr, pnt_cad, pnt_pow)
             smpl_lst.append(smpl)
+            point_number = point_number + 1
+            logger.debug ("Processed point: {}".format(point_number))
         logger.debug("Finished processing points: lap_nmbr: %s - trck_nmbr: %s of %s", lap_nmbr, trck_nmbr,
                      len(trck_lst) - 1)
     logger.info("Finished TCX parse to process %s", filename)

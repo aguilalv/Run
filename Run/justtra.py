@@ -7,6 +7,8 @@ import os
 
 import TCX
 
+import activities
+
 COMMANDS_HELP = {"print": "Prints main activity currently loaded in memory",
                  "tcx2mem":"Loads an activity from a TCX file to memory",
                  "quit":"Quits the command line",
@@ -33,13 +35,14 @@ def main():
             print("Called {} command with args {}".format(command,args))
             if len(args) != 1:
                 print ("   Error in call to 'tcx2mem': 'tcx2mem' takes 1 argument with the path to the TCX file")
-            main_activity = TCX.parse(args[0])
+            main_activity = activities.activity(TCX.parse(args[0]))
         elif command == "print":
             if main_activity is None:
                 print ("   No activity loaded")
+            elif len(args) == 0:
+                main_activity.print()
             else:
-                print (main_activity)
-
+                main_activity.print(int(args[0]))
 
 def setup_logging(
     default_path='logging.json',
