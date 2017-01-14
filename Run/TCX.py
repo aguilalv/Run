@@ -10,11 +10,14 @@
 #       - TODO Prepare a few cases of automated testing (paused exercise in the tests, several laps, missing data ...)
 #       - TODO Process all tracks in each lap (several tracks mean the exercise was paused)
 #       - TODO Some TCX files have laps with no track - not sure if it's valid or not
-#       - TODO Store all constants used across several places in a constants module (e.g. NA_VALUE)
 
 import argparse
 import logging
 import xml.etree.ElementTree as ET
+
+import dateutil.parser
+
+NA_VALUE = None
 
 def main():
     FILE = args.tcx_file1
@@ -41,7 +44,6 @@ def parse(filename):
     # Define Constants
     ns = {"df": "http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2",
           "ext": "http://www.garmin.com/xmlschemas/ActivityExtension/v2"}  # Dictionary of namespaces to simplify future calls
-    NA_VALUE = "-"
 
     # Initialise variables
     smpl_lst = []
@@ -91,38 +93,45 @@ def parse(filename):
             # Timestamp (If not available raise exception with invalid file)
             try:
                 pnt_timestamp = point.find("df:Time", ns).text
+                pnt_timestamp = dateutil.parser.parse(pnt_timestamp)
             except AttributeError:
                 raise ValueError("""ERROR IN TCX FILE: TrackPoint with no timestamp""")
             # GPS coordinates
             pnt_pos = point.find("df:Position", ns)
             try:
                 pnt_lat = pnt_pos.find("df:LatitudeDegrees", ns).text
+                pnt_lat = float(pnt_lat)
             except AttributeError:
                 pnt_lat = NA_VALUE
             try:
                 pnt_long = pnt_pos.find("df:LongitudeDegrees", ns).text
+                pnt_long = float(pnt_long)
             except AttributeError:
                 pnt_long = NA_VALUE
             # Altitude
             try:
                 pnt_altitude = point.find("df:AltitudeMeters", ns).text
+                pnt_altitude = float(pnt_altitude)
             except AttributeError:
                 pnt_altitude = NA_VALUE
             # Distance covered since begining of activity
             try:
                 pnt_dist = point.find("df:DistanceMeters", ns).text
+                pnt_dist = float(pnt_dist)
             except AttributeError:
                 pnt_dist = NA_VALUE
             # Instantaneous Heart Rate
             pnt_hr_elmnt = point.find("df:HeartRateBpm", ns)
             try:
                 pnt_hr = pnt_hr_elmnt.find("df:Value", ns).text
+                pnt_hr = int(pnt_hr)
             except AttributeError:
                 pnt_hr = NA_VALUE
             # Instantaneous cadence
             pnt_cad_elmnt = point.find("df:Cadence", ns)
             try:
                 pnt_cad = pnt_cad_elmnt.text
+                pnt_cad = int(pnt_cad)
             except AttributeError:
                 pnt_cad = NA_VALUE
 
@@ -133,6 +142,7 @@ def parse(filename):
                 pnt_tpx = pnt_ext.find("ext:TPX", ns)
                 try:
                     pnt_pow = pnt_tpx.find("ext:Watts", ns).text
+                    pnt_pow = int(pnt_pow)
                 except AttributeError:
                     pnt_pow = NA_VALUE
             else:
@@ -143,8 +153,8 @@ def parse(filename):
                 tpl_headers = ("DateTime", "Lap", "Latitude", "Longitude", "Altitude", "Dist", "HR", "Cadence","Power")
                 smpl_lst.append(tpl_headers)
 
-            # Create a tuple with sample information (in text form) and store in a list
-            smpl = (pnt_timestamp, str(lap_nmbr + 1), pnt_lat, pnt_long, pnt_altitude, pnt_dist, pnt_hr, pnt_cad, pnt_pow)
+            # Create a tuple with sample informationand store in a list
+            smpl = (pnt_timestamp, lap_nmbr + 1, pnt_lat, pnt_long, pnt_altitude, pnt_dist, pnt_hr, pnt_cad, pnt_pow)
             smpl_lst.append(smpl)
             point_number = point_number + 1
             logger.debug ("Processed point: {}".format(point_number))

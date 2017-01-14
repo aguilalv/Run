@@ -99,6 +99,101 @@
           </Trackpoint>
         </Track>
       </Lap>
+      <Lap StartTime="2016-12-19T12:26:17Z">
+        <TotalTimeSeconds>1860.72</TotalTimeSeconds>
+        <DistanceMeters>5381.12</DistanceMeters>
+        <MaximumSpeed>3.63</MaximumSpeed>
+        <Calories>402</Calories>
+        <AverageHeartRateBpm>
+          <Value>148</Value>
+        </AverageHeartRateBpm>
+        <MaximumHeartRateBpm>
+          <Value>161</Value>
+        </MaximumHeartRateBpm>
+        <Cadence>75</Cadence>
+        <Intensity>Active</Intensity>
+        <Track>
+          <Trackpoint>
+            <Time>2016-12-19T12:26:09Z</Time>
+            <Position>
+              <LatitudeDegrees>39.449821472168</LatitudeDegrees>
+              <LongitudeDegrees>-0.39246642589569</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>16.10000038147</AltitudeMeters>
+            <DistanceMeters>0</DistanceMeters>
+            <HeartRateBpm>
+              <Value>85</Value>
+            </HeartRateBpm>
+            <Cadence>58</Cadence>
+            <SensorState>Present</SensorState>
+            <Extensions>
+              <TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
+                <Watts>0</Watts>
+              </TPX>
+            </Extensions>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2016-12-19T12:27:10Z</Time>
+            <Position>
+              <LatitudeDegrees>39.449813842773</LatitudeDegrees>
+              <LongitudeDegrees>-0.39246997237206</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>16.10000038147</AltitudeMeters>
+            <DistanceMeters>0.93000000715256</DistanceMeters>
+            <HeartRateBpm>
+              <Value>85</Value>
+            </HeartRateBpm>
+            <Cadence>57</Cadence>
+            <SensorState>Present</SensorState>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2016-12-19T12:28:13Z</Time>
+            <Position>
+              <LatitudeDegrees>39.449768066406</LatitudeDegrees>
+              <LongitudeDegrees>-0.3925042450428</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>16</AltitudeMeters>
+            <DistanceMeters>6.9099998474121</DistanceMeters>
+            <HeartRateBpm>
+              <Value>89</Value>
+            </HeartRateBpm>
+            <Cadence>78</Cadence>
+            <SensorState>Present</SensorState>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2016-12-19T12:29:14Z</Time>
+            <Position>
+              <LatitudeDegrees>39.44974899292</LatitudeDegrees>
+              <LongitudeDegrees>-0.39252200722694</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>16</AltitudeMeters>
+            <DistanceMeters>9.6199998855591</DistanceMeters>
+            <HeartRateBpm>
+              <Value>90</Value>
+            </HeartRateBpm>
+            <SensorState>Present</SensorState>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2016-12-19T12:30:17Z</Time>
+            <Position>
+              <LatitudeDegrees>39.449695587158</LatitudeDegrees>
+              <LongitudeDegrees>-0.39257791638374</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>15.89999961853</AltitudeMeters>
+            <DistanceMeters>17.110000610352</DistanceMeters>
+            <HeartRateBpm>
+              <Value>93</Value>
+            </HeartRateBpm>
+            <Cadence>77</Cadence>
+            <SensorState>Present</SensorState>
+            <Extensions>
+              <TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
+                <Watts>17</Watts>
+              </TPX>
+            </Extensions>
+          </Trackpoint>
+        </Track>
+      </Lap>
     </Activity>
   </Activities>
 </TrainingCenterDatabase>

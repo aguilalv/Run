@@ -4,10 +4,10 @@
 #       - TODO Eliminate main() and test in a separate module
 
 
+import TCX
 import coordinates
 import numpy
 
-import TCX
 
 def nw_global_alignment(first_seq, second_seq):
     #Create scores matrix
@@ -66,7 +66,7 @@ def main():
     GAP = -1
 
     first_seq = []
-    smpl_lst = TCX.parse("../activities/STRun2.tcx")
+    smpl_lst = TCX.parse("../data/STRun2.tcx")
     for smpl in smpl_lst:
         coord_to_append = coordinates.coord(float(smpl[2]),float(smpl[3]))
         first_seq.append(coord_to_append)
@@ -75,7 +75,7 @@ def main():
     print(len(first_seq))
 
     second_seq = []
-    smpl_lst = TCX.parse("../activities/STRun3.tcx")
+    smpl_lst = TCX.parse("../data/STRun3.tcx")
     for smpl in smpl_lst:
         coord_to_append = coordinates.coord(float(smpl[2]),float(smpl[3]))
         second_seq.append(coord_to_append)
