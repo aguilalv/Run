@@ -18,6 +18,8 @@ import xml.etree.ElementTree as ET
 import dateutil.parser
 
 NA_VALUE = None
+HEADERS = ("timestamp", "lap", "latitude", "longitude", "altitude", "distance", "heartrate", "cadence", "power")
+
 
 def main():
     FILE = args.tcx_file1
@@ -150,8 +152,7 @@ def parse(filename):
 
             # If it is the first point of the first lap, store headers tuple
             if len(smpl_lst) == 0:
-                tpl_headers = ("DateTime", "Lap", "Latitude", "Longitude", "Altitude", "Dist", "HR", "Cadence","Power")
-                smpl_lst.append(tpl_headers)
+                smpl_lst.append(HEADERS)
 
             # Create a tuple with sample informationand store in a list
             smpl = (pnt_timestamp, lap_nmbr + 1, pnt_lat, pnt_long, pnt_altitude, pnt_dist, pnt_hr, pnt_cad, pnt_pow)

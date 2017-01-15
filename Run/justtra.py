@@ -1,4 +1,4 @@
-# TODO - Check if it is easy and worth it to use readline to have a command history
+# TODO - Check if it is easy to use a CLI module to make this cmd or cmd2
 
 import argparse
 import json
@@ -6,11 +6,13 @@ import logging.config
 import os
 
 import TCX
-
 import activities
+import athletes
 
 COMMANDS_HELP = {"print": "Prints main activity currently loaded in memory",
                  "tcx2mem":"Loads an activity from a TCX file to memory",
+                 "athl": "Creates and ahtlete",
+                 "add" : "Adds activity in memory to active athlete",
                  "quit":"Quits the command line",
                  "help":"Shows list of recognised commands"}
 
@@ -32,10 +34,22 @@ def main():
         if command == "help":
             [print("   "+c+" - "+h) for (c,h) in COMMANDS_HELP.items()]
         elif command == "tcx2mem":
-            print("Called {} command with args {}".format(command,args))
             if len(args) != 1:
                 print ("   Error in call to 'tcx2mem': 'tcx2mem' takes 1 argument with the path to the TCX file")
-            main_activity = activities.activity(TCX.parse(args[0]))
+                continue
+            main_activity = activities.run(TCX.parse(args[0]))
+            print ("Activity loaded: {}".format(main_activity))
+        elif command == "athl":
+            print("Called {} command with args {}".format(command,args))
+            active_athlete = athletes.athlete()
+            print ("Athlete created: {}".format(active_athlete))
+        elif command == "add":
+            print("Called {} command with args {}".format(command,args))
+            if main_activity is None:
+                print ("    Error: No activity loaded in memory")
+                continue
+            active_athlete.add_activity(main_activity)
+            print ("Activity {} addedto athlete {}".format(main_activity,active_athlete))
         elif command == "print":
             if main_activity is None:
                 print ("   No activity loaded")

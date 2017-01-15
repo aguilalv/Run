@@ -1,5 +1,7 @@
 import pandas as pd
 
+# TODO: Complete __str__ method to return a description of the activity
+
 class activity:
 
     """Generic activity class from which the different types (e.g. run, bike ...) can inherit
@@ -27,3 +29,28 @@ class activity:
 #    @classmethod
 #    def fromFile(cls,filename):
 #        cls.
+
+class run(activity):
+
+    """Run class to represent a run training activity. Inherits from activity.
+
+    """
+
+    def __init__(self,raw_smpl_lst):
+        activity.__init__(self,raw_smpl_lst)
+        self._calculate_fields()
+
+    def _calculate_fields(self):
+        """ Calculate running specific metrics derived from the raw data"""
+
+        # TODO: Clean df to make sure all samples are 1 sec apart. Right now Asumes all samples are 1 second apart.
+        # TODO: Calculate levelpace. right now levelpace is same as pace
+
+        # Calculate speed in km/h
+        self.df['speed'] = (self.df['distance'] - self.df['distance'].shift(1)) * 3.6
+        # calculate pace in seconds / Km
+        self.df['pace'] = 3600 / self.df['speed']
+        # calculate slope in % (100 * rise / run)
+        self.df['slope'] = ((self.df['altitude'] - self.df['altitude'].shift(1)) / (self.df['distance'] - self.df['distance'].shift(1))) * 100
+        # calculate level pace in seconds / Km
+        self.df['levelpace'] = self.df['pace']
